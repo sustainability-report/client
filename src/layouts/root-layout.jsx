@@ -25,7 +25,7 @@ export default function RootLayout() {
     <ClerkProvider navigate={navigate} publishableKey={PUBLISHABLE_KEY}>
       
       <header className="side-header">
-        <p>NEW-STAGE</p>
+        <p>SUSTAINABILITY</p>
         <hr />          
         <ul>
           <li>

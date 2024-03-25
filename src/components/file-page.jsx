@@ -20,16 +20,22 @@ export default function FilesPage() {
   
      fetchingFiles();
   }, [])
+  console.log(files)
 
   return(
-    <div>
-      <h1>This is file page</h1>
-      <Link to="/upload-file">Upload File</Link>
+    <div className="file-page-container">
+      <div className="header">
+        <h1>This is file page</h1>
+        <button>
+          <Link to="/upload-file">Upload File</Link>
+        </button>
+      </div>
+
       {files.map(element => (
-        <div key={element._id}>
-          <p>{element.nameOfFile}</p>
-          <img src={element.file} alt="file-img"/>
-        </div>
+      <div key={element._id} className="file-container">
+        {/* <p>{element.nameOfFile}</p> */}
+        <img src={element.file} alt="file-img" className="image-from-file-page"/>
+      </div>
       ))}
     </div>
   )

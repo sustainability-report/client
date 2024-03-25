@@ -4,9 +4,6 @@
   padding: 0;
 }
 
-body {
-  background-color: #ffffff;
-}
 
 #root {
   display: flex;
@@ -17,8 +14,8 @@ header {
   height: 100%;
   top: 0; left: 0;
   position: fixed;
-  background-color: white;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: rgb(6, 88, 62);
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 header hr {
@@ -26,11 +23,11 @@ header hr {
 }
 
 header p {
-  color: black;
+  color: rgb(243, 236, 238);
   text-align: center;
-  margin: 2em;
+  margin: 1.5em 0;
   font-weight: 750;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 900;
 }
@@ -57,6 +54,8 @@ header ul li a {
   width: 100%;
   font-weight: 800;
   color: grey;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 
 header ul li a:hover {
@@ -85,6 +84,40 @@ header ul li span {
 
 main {
   margin-left: 19rem;
+}
+
+/* Styling for file-page */
+
+.file-page-container .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-bottom: 2em;
+  transition: 0.5s;
+}
+
+.file-page-container .header button {
+  padding: 1em;
+  border-radius: 10px;
+  border-color: white;
+  background-color: rgb(59, 59, 179);
+}
+
+.file-page-container .header button a {
+  color: white;
+}
+
+.file-page-container .header button a:hover {
+  font-weight: bolder;
+  transition: font-weight 0.5s ease-in;
+}
+
+.image-from-file-page {
+  width: 50%;
+  float: left;
 }
 
 
@@ -117,10 +150,6 @@ main {
     flex-direction: column;
     justify-content: start;
     align-items: center;
-  }
-
-  header p {
-    font-size: 15px;
   }
 
   header ul li span {

@@ -32,7 +32,7 @@ export default function UploadFile() {
           'Content-Type': 'multipart/form-data',
         }})
       alert("success upload the file")
-      navigate("/files")
+      navigate("/")
       setFile("")
       setNameOfFile("");
     } catch (e) {
@@ -56,7 +56,7 @@ export default function UploadFile() {
         <button type="submit">Submit</button>
       </form>
     
-    <h3>{message}</h3>
+      <h3>{message}</h3>
     </div>
   );
   

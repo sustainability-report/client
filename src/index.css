@@ -4,9 +4,13 @@
   padding: 0;
 }
 
+body {
+  background-color: rgba(255, 255, 255, 0.982);
+  position: relative;
+}
 
 #root {
-  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -16,6 +20,7 @@ header {
   position: fixed;
   background-color: rgb(6, 88, 62);
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  transition: opacity 0.5s ease;
 }
 
 header hr {
@@ -23,7 +28,7 @@ header hr {
 }
 
 header p {
-  color: rgb(243, 236, 238);
+  color: rgb(255, 253, 253);
   text-align: center;
   margin: 1.5em 0;
   font-weight: 750;
@@ -34,10 +39,6 @@ header p {
 
 header ul, header h1 {
   padding: 0 15px;
-}
-
-header ul {
-  margin-left: 3vw;
 }
 
 header ul li {
@@ -77,14 +78,41 @@ header ul li a.active {
   transition: color 0.5s ease;
 }
 
-
 header ul li span {
   margin-left: 0.6em;
 }
 
-main {
-  margin-left: 19rem;
+
+div.x {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 18rem;
 }
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.x-hidden, .main-hidden {
+  margin-left: 0 !important;
+}
+
+.x, main {
+  transition: margin-left 0.5s ease;
+}
+
+
+div.x span {
+  cursor: pointer;
+}
+
+main {
+  flex-grow: 1;
+  margin-left: 18rem;
+}
+
 
 /* Styling for file-page */
 
@@ -103,7 +131,7 @@ main {
   padding: 1em;
   border-radius: 10px;
   border-color: white;
-  background-color: rgb(59, 59, 179);
+  background-color: rgb(6, 88, 62);
 }
 
 .file-page-container .header button a {
@@ -122,70 +150,51 @@ main {
 
 
 @media (max-width: 900px) {
-
   header {
-    width: 13em;
-  }
-
-  header p {
-    font-size: 15px;
-  }
-
-  header ul {
-    margin-left: 0;
-  }
-
-  header ul li a:hover {
-    border-radius: 0px;
-    background-color: white;
-  }
-}
-
-
-@media (max-width: 770px) {
-
-  header {
-    width: 10em;
+    width: 5rem;
     display: flex;
     flex-direction: column;
-    justify-content: start;
     align-items: center;
+    justify-content: center;
+  }
+  header p {
+    display: none;
+  }
+
+  hr {
+    display: none;
   }
 
   header ul li span {
-    display: none
+    display: none;
   }
-
-  header ul li a.active {
-    border-right-style: none;    
-    background-color: transparent;
+ 
+  div.x, main {
+    margin-left: 5rem;
   }
-
-  header ul li a:hover {
-    border-radius: 40%;
-  }
-
-  main {
-    margin: 0;
-  }
-
-  
 }
 
 @media (max-width: 500px) {
-
   #root {
     flex-direction: column;
   }
-  
+
+  .hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   header {
+    opacity: 1;
     width: 100%;
     margin: 0;
     height: auto;
+    bottom: 0;
+    top: auto;
     position: fixed;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
   }
   
@@ -205,12 +214,41 @@ main {
   }
 
   header ul li {
-    margin: 0 2em;
+    margin: 0 0.5em;
+  }
+
+  header ul li span {
+    display: none
+  }
+
+  header ul li a.active {
+    border-right-style: none;    
+    background-color: transparent;
+  }
+
+  header ul li a:hover {
+    border-radius: 40%;
+  }
+
+  div.x {
+    margin: 0;
+  }
+
+  div.x span {
+    display: none;
+  }
+
+  div.x h1 {
+    margin: 0;
+    text-align: center;
+    border-bottom: solid;
+    text-align: center;
+    color: rgb(74, 8, 8);
   }
 
   main {
-    margin-left: 0;
-    margin-top: 2em;
+    margin: 0;
+    padding: 0;
     width: 100%;
   }
 }

@@ -69,7 +69,7 @@ header ul li a:hover {
 header ul li a.active {
   border-radius: 10px;
   border-right-style: solid;
-  border-right-color: rgb(69, 148, 141);;
+  border-right-color: rgb(69, 148, 141);
   font-weight: bolder;
   font-size: 20px;
   background-color: rgb(201, 201, 209);
@@ -82,17 +82,22 @@ header ul li span {
   margin-left: 0.6em;
 }
 
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
 
-div.x {
+.x {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-left: 18rem;
-}
-
-.hidden {
-  opacity: 0;
-  pointer-events: none;
+  top: 0; right: 0; left: 0;
+  z-index: 1000;
+  position: fixed;
+  height: 5vh;
+  background-color: rgb(241, 241, 241);;
+  padding: 0.5rem;
 }
 
 .x-hidden, .main-hidden {
@@ -104,13 +109,60 @@ div.x {
 }
 
 
-div.x span {
+.x ul {
+  display: flex;
+  width: 400px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+
+.x ul li a {
+  font-size: 1rem;
+  padding: 10px;
+  color: rgb(69, 148, 141);
+  font-weight: bold;
+  display: block;
+  transition: 0.6s ease-out;
+}
+
+.x ul li a:hover {
+  background-color: grey;
+  color: whitesmoke;
+}
+
+
+.x span {
   cursor: pointer;
+}
+
+.x div {
+  display: flex;
+  align-items: center;
+}
+
+.x div input {
+  height: 5vh;
+  width: 15vw;
+  border-radius: 20px;
+  margin-left: -2rem;
+  padding-left: 2rem;
+  background-color: transparent;
+}
+
+.x div input:hover {
+  width: 20vw;
+  transition: 0.3s ease-out;
+  outline-color: rgb(6, 88, 62);
+  background-color: rgb(249, 247, 247);
 }
 
 main {
   flex-grow: 1;
   margin-left: 18rem;
+  position: relative;
+  top: 4em;
+  z-index: 0;
 }
 
 
@@ -185,7 +237,7 @@ main {
   }
 
   header {
-    opacity: 1;
+    z-index: 1000;
     width: 100%;
     margin: 0;
     height: auto;

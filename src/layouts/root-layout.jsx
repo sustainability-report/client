@@ -2,11 +2,11 @@ import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { ClerkProvider, SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
 import { FaHome } from "react-icons/fa";
 import { PiSignInBold } from "react-icons/pi";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MdScreenShare } from "react-icons/md";
 import { GiClassicalKnowledge } from "react-icons/gi";
 import { GiHamburgerMenu } from "react-icons/gi";
-
+import { IoIosSearch } from "react-icons/io";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
  
@@ -16,9 +16,30 @@ if (!PUBLISHABLE_KEY) {
 
 export default function RootLayout() {
   const navigate = useNavigate();
-  const [activeLink, setActiveLink] = useState("")
-  const [hideHeader, setHideHeader] = useState(false)
+  const [activeLink, setActiveLink] = useState("");
+  const [hideHeader, setHideHeader] = useState(false);
+  const initialItems = [
+    { name: 'Theology', href: '/#' },
+    { name: 'Shipping', href: '/#' },
+    { name: 'Machinary', href: '/#' },
+    { name: 'Pharmacy', href: '/#' },
+    { name: 'Sustainability', href: '/#' },
+    { name: 'Electricity', href: '/#' },
+    { name: 'General', href: '/#' },
+  ];
+  
+  const [items, setItems] = useState(initialItems);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setItems(prevItems => {
+        const [first, ...rest] = prevItems; // Remove the first item
+        return [...rest, first]; // Add it to the end
+      });
+    }, 1000);
+
+    return () => clearInterval(intervalId); // Clean up on unmount
+  }, []);
   const handleActiveLink = (linkPath) => {
     setActiveLink(linkPath)
   }
@@ -66,7 +87,17 @@ export default function RootLayout() {
 
       <div className={xClass}>
         <span onClick={handleHideHeader}><GiHamburgerMenu/></span>
-        <h1>Knowledge is a fundamental thing for human being!</h1>
+        <ul>
+        {items.map((item, index) => (
+          <li key={index}>
+            <Link>{item.name}</Link>
+          </li>
+        ))}
+      </ul>
+        <div>
+          <IoIosSearch className='search-icon'/>       
+          <input placeholder='Search ...'/>
+        </div>
       </div>
 
       <main className={mainClass}>

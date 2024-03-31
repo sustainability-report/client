@@ -23,6 +23,7 @@ export default function UploadFile() {
     try {
       if(!file) setMessage("Please upload a file")
       const token = await session.getToken();
+    console.log(token)
       const uploadFile = new FormData();
       uploadFile.append("file", file);
       uploadFile.append("nameOfFile", nameOfFile)
@@ -55,7 +56,7 @@ export default function UploadFile() {
 
         <button type="submit">Submit</button>
       </form>
-    
+      
       <h3>{message}</h3>
     </div>
   );

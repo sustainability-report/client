@@ -1,34 +1,37 @@
-import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react"
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import DocViewer, { DocViewerRenderers } from '@cyntler/react-doc-viewer';
 
 export default function Home() {
   const API_URL = import.meta.env.VITE_REACT_APP_SERVER_URL;
-  const [files, setFiles] = useState([]);
-  
+  const [documents, setDocuments] = useState([]);
 
   useEffect(() => {
-     const fetchingFiles = async () => {
-       try {
-        const listOfFiles = await axios.get(`${API_URL}/api/files`)
-        setFiles(listOfFiles.data)
-      } catch (e) {
-        console.log("error fetching files", e)
+    const fetchFiles = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/api/files`);
+        const filesData = response.data.map(file => ({
+          uri: file.file,
+          fileName: file.nameOfFile,
+          fileType: "pdf"
+        }));
+        console.log(filesData); // Debug: Log the mapped documents
+        setDocuments(filesData);
+      } catch (error) {
+        console.error("Error fetching files", error);
       }
-     }
+    };
   
-     fetchingFiles();
-  }, [])
-  console.log(files)
+    fetchFiles();
+  }, []);
+  
 
-  return(
+  return (
     <div className="file-page-container">
-      {files.map(element => (
-      <div key={element._id} className="file-container">
-        <p>{element.nameOfFile}</p>
-        <img src={element.file} alt="file-img" className="image-from-file-page"/>
-      </div>
-      ))}
+      <DocViewer
+        documents={documents}
+        pluginRenderers={DocViewerRenderers}
+      />
     </div>
-  )
+  );
 }

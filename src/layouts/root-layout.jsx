@@ -36,7 +36,7 @@ export default function RootLayout() {
         const [first, ...rest] = prevItems; // Remove the first item
         return [...rest, first]; // Add it to the end
       });
-    }, 1000);
+    }, 10000);
 
     return () => clearInterval(intervalId); // Clean up on unmount
   }, []);

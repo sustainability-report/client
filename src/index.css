@@ -166,41 +166,6 @@ main {
 }
 
 
-/* Styling for file-page */
-
-.file-page-container .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  margin-bottom: 2em;
-  transition: 0.5s;
-}
-
-.file-page-container .header button {
-  padding: 1em;
-  border-radius: 10px;
-  border-color: white;
-  background-color: rgb(6, 88, 62);
-}
-
-.file-page-container .header button a {
-  color: white;
-}
-
-.file-page-container .header button a:hover {
-  font-weight: bolder;
-  transition: font-weight 0.5s ease-in;
-}
-
-.image-from-file-page {
-  width: 50%;
-  float: left;
-}
-
-
 @media (max-width: 900px) {
   header {
     width: 5rem;

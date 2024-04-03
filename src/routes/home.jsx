@@ -18,7 +18,7 @@ export default function Home() {
           owner: file.ownerDetails.firstName,
           image: file.ownerDetails.image
         }));
-        console.log(filesData)
+        console.log(response.data)
         setDocuments(filesData);
       } catch (error) {
         console.error("Error fetching files", error);
@@ -29,7 +29,11 @@ export default function Home() {
   }, []);
 
   const handleDocumentClick = (index) => {
-    setActiveDocumentIndex(index);
+    if (activeDocumentIndex === index) {
+      setActiveDocumentIndex(null);
+    } else {
+      setActiveDocumentIndex(index);
+    }
   };
 
   return (
@@ -37,19 +41,23 @@ export default function Home() {
       <div className="document-list">
         {documents.map((document, index) => (
           <div key={index} className="document-item" onClick={() => handleDocumentClick(index)} style={{cursor:'pointer'}}>
-            {document.fileName}
-            {document.owner}
-            <img src={document.image}/>
+            <div> 
+              <img src={document.image}/>
+            </div>
+            <div>
+              <p>Title: {document.fileName}</p>
+              <p>Author: {document.owner}</p>
+            </div>
           </div>
         ))}
+        {activeDocumentIndex !== null && (
+          <DocViewer
+            key={documents[activeDocumentIndex].uri}
+            documents={[documents[activeDocumentIndex]]}
+            pluginRenderers={DocViewerRenderers}
+          />
+        )}
       </div>
-      {activeDocumentIndex !== null && (
-        <DocViewer
-          key={documents[activeDocumentIndex].uri}
-          documents={[documents[activeDocumentIndex]]}
-          pluginRenderers={DocViewerRenderers}
-        />
-      )}
     </div>
   );
 }

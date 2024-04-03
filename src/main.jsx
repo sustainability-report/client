@@ -8,6 +8,7 @@ import SignUpPage from './routes/sign-up'
 import UploadFile from './components/upload-file'
 import About from './routes/about'
 import Home from './routes/home'
+import DocumentViewer from './components/document-viewer'
  
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
       { path: "/sign-in", element: <SignInPage /> },
       { path: "/sign-up", element: <SignUpPage /> },
       {path: "/upload", element: <UploadFile />},
-      {path: "/upload-file", element: <UploadFile />}
+      {path: "/files/:id", element: <DocumentViewer />}
     ]
   }
 ])

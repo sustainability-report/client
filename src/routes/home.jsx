@@ -18,8 +18,8 @@ export default function Home() {
           owner: file.ownerDetails.firstName,
           image: file.ownerDetails.image
         }));
-        console.log(response.data)
         setDocuments(filesData);
+        console.log(response.data)
       } catch (error) {
         console.error("Error fetching files", error);
       }
@@ -27,6 +27,7 @@ export default function Home() {
   
     fetchFiles();
   }, []);
+
 
   const handleDocumentClick = (index) => {
     if (activeDocumentIndex === index) {
